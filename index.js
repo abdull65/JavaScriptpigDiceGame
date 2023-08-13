@@ -8,9 +8,25 @@ const newGameBtn = document.getElementById("newGame");
 const rollDiceBtn = document.getElementById("rollDice");
 const holdGameBtn = document.getElementById("holdGame");
 const diceImage = document.querySelector("#diceImage");
+const firstPlayer = document.querySelector(".player1");
+const secondPlayer = document.querySelector(".player2");
+const prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
+const prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
+firstPlayer.textContent = prompt1;
+secondPlayer.textContent = prompt2;
+if (prompt1 === "") {
+  firstPlayer.textContent = "PLAYER 1";
+} else {
+  firstPlayer.textContent = prompt1;
+}
+if (prompt2 === "") {
+  secondPlayer.textContent = "PLAYER 2";
+} else {
+  secondPlayer.textContent = prompt2;
+}
 let activeScore = 0;
 let scoresArr = [0, 0];
-const winningScore = 180;
+const winningScore = 20;
 let gameState = true;
 diceImage.style.display = "none";
 rollDiceBtn.addEventListener("click", () => {
@@ -64,7 +80,7 @@ holdGameBtn.addEventListener("click", () => {
         currentScore1.textContent = scoresArr[0];
         player1.classList.add("active");
         diceImage.style.display = "none";
-        alert("player1 Win");
+        alert(`${prompt1} WINS!`);
       } else {
         activeScore = 0;
         player1.classList.remove("active");
@@ -80,7 +96,7 @@ holdGameBtn.addEventListener("click", () => {
         currentScore2.textContent = scoresArr[1];
         player2.classList.add("active");
         diceImage.style.display = "none";
-        alert("player2 Win");
+        alert(`${prompt2} WINS!`);
       } else {
         activeScore = 0;
         player2.classList.remove("active");
@@ -90,6 +106,20 @@ holdGameBtn.addEventListener("click", () => {
   }
 });
 newGameBtn.addEventListener("click", () => {
+  const prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
+  const prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
+  firstPlayer.textContent = prompt1;
+  secondPlayer.textContent = prompt2;
+  if (prompt1 === "") {
+    firstPlayer.textContent = "PLAYER 1";
+  } else {
+    firstPlayer.textContent = prompt1;
+  }
+  if (prompt2 === "") {
+    secondPlayer.textContent = "PLAYER 2";
+  } else {
+    secondPlayer.textContent = prompt2;
+  }
   activeScore = 0;
   scoresArr = [0, 0];
   gameState = true;

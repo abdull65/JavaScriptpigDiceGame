@@ -125,8 +125,7 @@ button:active {
 
   .gameContent {
     margin: 0;
-    height: 100vh;
-    padding: 50px 0;
+    height: 99vh;
   }
 
   #diceBox {

@@ -10,23 +10,24 @@ const holdGameBtn = document.getElementById("holdGame");
 const diceImage = document.querySelector("#diceImage");
 const firstPlayer = document.querySelector(".player1");
 const secondPlayer = document.querySelector(".player2");
-const prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
-const prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
-firstPlayer.textContent = prompt1;
-secondPlayer.textContent = prompt2;
-if (prompt1 === "") {
-  firstPlayer.textContent = "PLAYER 1";
-} else {
-  firstPlayer.textContent = prompt1;
-}
-if (prompt2 === "") {
-  secondPlayer.textContent = "PLAYER 2";
-} else {
-  secondPlayer.textContent = prompt2;
-}
+let prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
+let prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
+let winningScorePrompt = prompt("SET WINNING SCORE");
+let winningScore = 0;
+firstPlayer.textContent = prompt1 === "" ? "PLAYER 1" : prompt1;
+secondPlayer.textContent = prompt2 === "" ? "PLAYER 2" : prompt2;
 let activeScore = 0;
 let scoresArr = [0, 0];
-const winningScore = 20;
+if (winningScorePrompt === "") {
+  alert("please insert a winning score!");
+  winningScorePrompt = prompt("SET WINNING SCORE");
+}
+if (isNaN(winningScorePrompt)) {
+  alert("winning score not valid! please insert a valid winning score");
+  winningScorePrompt = prompt("SET VALID WINNING SCORE");
+} else {
+  winningScore = Number(winningScorePrompt);
+}
 let gameState = true;
 diceImage.style.display = "none";
 rollDiceBtn.addEventListener("click", () => {
@@ -80,7 +81,7 @@ holdGameBtn.addEventListener("click", () => {
         currentScore1.textContent = scoresArr[0];
         player1.classList.add("active");
         diceImage.style.display = "none";
-        alert(`${prompt1} WINS!`);
+        alert(`${firstPlayer.textContent} WINS!`);
       } else {
         activeScore = 0;
         player1.classList.remove("active");
@@ -96,7 +97,7 @@ holdGameBtn.addEventListener("click", () => {
         currentScore2.textContent = scoresArr[1];
         player2.classList.add("active");
         diceImage.style.display = "none";
-        alert(`${prompt2} WINS!`);
+        alert(`${secondPlayer.textContent} WINS!`);
       } else {
         activeScore = 0;
         player2.classList.remove("active");
@@ -106,20 +107,6 @@ holdGameBtn.addEventListener("click", () => {
   }
 });
 newGameBtn.addEventListener("click", () => {
-  const prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
-  const prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
-  firstPlayer.textContent = prompt1;
-  secondPlayer.textContent = prompt2;
-  if (prompt1 === "") {
-    firstPlayer.textContent = "PLAYER 1";
-  } else {
-    firstPlayer.textContent = prompt1;
-  }
-  if (prompt2 === "") {
-    secondPlayer.textContent = "PLAYER 2";
-  } else {
-    secondPlayer.textContent = prompt2;
-  }
   activeScore = 0;
   scoresArr = [0, 0];
   gameState = true;
@@ -127,6 +114,12 @@ newGameBtn.addEventListener("click", () => {
   rolledScoreBox2.textContent = 0;
   currentScore1.textContent = 0;
   currentScore2.textContent = 0;
+  diceImage.style.display = "none";
   player1.classList.add("active");
   player2.classList.remove("active");
+  prompt1 = prompt("FIRST PLAYER PLEASE ENTER YOUR NAME HERE");
+  prompt2 = prompt("SECOND PLAYER PLEASE ENTER YOUR NAME HERE");
+  firstPlayer.textContent = prompt1 === "" ? "PLAYER 1" : prompt1;
+  secondPlayer.textContent = prompt2 === "" ? "PLAYER 2" : prompt2;
+  winningScore = parseInt(prompt("SET NEW WINNING SCORE"));
 });
